@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int num, firstDigit, lastDigit, numDigits, swappedNum, multiplier;
+
+    printf("Enter a number: ");
+    if (scanf("%d", &num) != 1) {
+        printf("Invalid input. Please enter an integer.\n");
+        return 1; 
+    }
+
+    int isNegative = 0;
+    if (num < 0) {
+        num = -num;
+        isNegative = 1; 
+    }
+
+    lastDigit = num % 10;
+
+    numDigits = log10(num) + 1;
+
+    firstDigit = num / pow(10, numDigits - 1);
+
+    int remainingNum = num % (int)pow(10, numDigits - 1); 
+    remainingNum /= 10; 
+
+    multiplier = pow(10, numDigits - 1);
+    swappedNum = (lastDigit * multiplier) + (remainingNum * 10) + firstDigit;
+
+    if (isNegative) {
+        swappedNum = -swappedNum;
+    }
+
+    printf("Number after swapping first and last digit: %d\n", swappedNum);
+
+    return 0;
+}
